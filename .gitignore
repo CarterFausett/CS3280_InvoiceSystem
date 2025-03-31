@@ -1,0 +1,12 @@
+# .NET directories
+bin/
+obj/
+
+# Database files
+InvoiceSystemDatabaseContent/
+*.mdf;
+
+# Misc
+CopilotIndices/
+ProjectEvaluation/
+.vs/

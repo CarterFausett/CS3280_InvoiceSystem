@@ -1,0 +1,61 @@
+﻿<Window x:Class="InvoiceSystem.Search.wndSearch"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:InvoiceSystem.Search"
+        mc:Ignorable="d"
+        Loaded="Window_Loaded"
+        Title="Invoice Search" Height="720" Width="1280">
+
+    <Grid Style="{StaticResource GridKey}" Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+
+            <RowDefinition Height="*"/>
+
+            <RowDefinition Height="Auto"/>
+
+        </Grid.RowDefinitions>
+
+
+        <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="0,0,0,10">
+            <StackPanel Orientation="Vertical" Margin="0,0,10,0">
+                <TextBlock Text="Invoice Number:" Margin="0,0,0,5"/>
+                <ComboBox x:Name="ComboOption1" Width="200" SelectionChanged="ComboOption1_SelectionChanged"
+          IsEditable="True" IsReadOnly="True" Text="Select Invoice Number">
+                </ComboBox>
+
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Margin="0,0,10,0">
+                <TextBlock Text="Invoice Date:" Margin="0,0,0,5"/>
+                <ComboBox x:Name="ComboOption2" Width="200" SelectionChanged="ComboOption2_SelectionChanged"
+                    IsEditable="True" IsReadOnly="True" Text="Select Date">
+                </ComboBox>
+
+            </StackPanel>
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Total Cost:" Margin="0,0,0,5"/>
+                <ComboBox x:Name="ComboOption3" Width="200" SelectionChanged="ComboOption3_SelectionChanged"
+          IsEditable="True" IsReadOnly="True" Text="Select Total Cost">
+                </ComboBox>
+            </StackPanel>
+        </StackPanel>
+
+
+        <DataGrid x:Name="DataGridResults" Grid.Row="1" 
+                  AutoGenerateColumns="True" 
+                  IsReadOnly="True" 
+                  SelectionMode="Single" 
+                  Margin="0,0,0,10"/>
+
+
+        <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Right">
+            <Button x:Name="ClearSelectionButton" Content="Clear Selection" Width="100" Margin="0,0,10,0" Click="ClearSelectionButton_Click"/>
+            <Button x:Name="SearchSelectButton" Background="Lime" Content="Select" Width="100" Margin="0,0,10,0" 
+                    Click="SearchSelectButton_Click"/>
+            <Button x:Name="SearchCancelButton" Background="Red" Content="Cancel" Width="100" 
+                    Click="SearchCancelButton_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

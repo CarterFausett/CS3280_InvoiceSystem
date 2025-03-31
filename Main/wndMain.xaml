@@ -1,0 +1,55 @@
+﻿<Window x:Name="WindowMain" x:Class="InvoiceSystem.Main.wndMain"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:InvoiceSystem.Main"
+        mc:Ignorable="d"
+        Title="Invoice System" Height="720" Width="1280">
+    <Canvas>
+        <DataGrid x:Name="dgInvoiceItems" Height="600" Width="600" d:ItemsSource="{d:SampleData ItemCount=5}" Canvas.Left="640" Canvas.Top="70" HorizontalAlignment="Left" VerticalAlignment="Top" BorderBrush="Black" IsReadOnly="True" Background="White"/>
+        <Menu Height="24" Width="1280" HorizontalAlignment="Center" Canvas.Top="10" VerticalAlignment="Top" BorderBrush="Black" Background="White" OpacityMask="Black">
+            <MenuItem x:Name="MenuItemOpenSearch" Header="Search Invoices" FontSize="16" Click="OpenSearch" OpacityMask="Black">
+                <MenuItem.BorderBrush>
+                    <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.InfoTextColorKey}}"/>
+                </MenuItem.BorderBrush>
+            </MenuItem>
+            <MenuItem x:Name="MenuItemOpenItems" Header="Edit Items" FontSize="16" Click="OpenItems" OpacityMask="Black">
+                <MenuItem.BorderBrush>
+                    <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.InfoTextColorKey}}"/>
+                </MenuItem.BorderBrush>
+            </MenuItem>
+        </Menu>
+        <Label x:Name="LabelItemsOnInvoice" Content="Items on this Invoice: " Canvas.Left="640" Canvas.Top="34" HorizontalAlignment="Left" VerticalAlignment="Center" Width="255" FontSize="14"/>
+        <GroupBox Height="238" Header="Invoice Header" Width="444" Canvas.Left="57" Canvas.Top="139" HorizontalAlignment="Left" VerticalAlignment="Center" Background="White" BorderBrush="{x:Null}"/>
+        <Label Content="Invoice Number: " Canvas.Left="81" Canvas.Top="182" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100"/>
+        <Label Content="Invoice Date: " Canvas.Left="101" Canvas.Top="240" Width="80" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.542,1.517"/>
+        <Label Content="Total Cost: " Canvas.Left="116" Canvas.Top="293" Width="65" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <TextBox x:Name="tbInvoiceNumber" Canvas.Left="186" TextWrapping="Wrap" Canvas.Top="177" Width="120" HorizontalAlignment="Left" VerticalAlignment="Top" IsReadOnly="True"/>
+        <TextBox x:Name="tbTotalCost" Canvas.Left="186" TextWrapping="Wrap" Canvas.Top="288" Width="120" HorizontalAlignment="Left" VerticalAlignment="Top" IsReadOnly="True"/>
+        <DatePicker x:Name="dpInvoiceDatePicker" Canvas.Left="186" Canvas.Top="242" SelectedDateChanged="UpdateLoadedInvoiceDate" DateValidationError="DisplayErrorMessage" Foreground="Black">
+            <DatePicker.BorderBrush>
+                <SolidColorBrush Color="{DynamicResource PrimaryColor}"/>
+            </DatePicker.BorderBrush>
+            <DatePicker.Background>
+                <SolidColorBrush Color="{DynamicResource TextboxColor}"/>
+            </DatePicker.Background>
+        </DatePicker>
+        <GroupBox Height="207" Header="Invoice Items" Width="471" Canvas.Left="57" Canvas.Top="439" HorizontalAlignment="Left" VerticalAlignment="Top" Background="White" BorderBrush="{x:Null}"/>
+        <Button x:Name="bAddItem" Content="Add Item" Canvas.Left="448" Canvas.Top="483" RenderTransformOrigin="1.006,2.37" Click="AddItemToLoadedInvoiceItemList" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <ComboBox x:Name="cbItemList" Canvas.Left="181" Canvas.Top="490" Width="120" SelectionChanged="UpdateDisplayedItemCost"/>
+        <ComboBox x:Name="cbInvoiceList" Canvas.Left="150" Canvas.Top="74" Width="120" HorizontalAlignment="Left" VerticalAlignment="Top" SelectionChanged="LoadSelectedInvoice"/>
+        <Label Content="Select Invoice: " Canvas.Left="57" Canvas.Top="70"/>
+        <Button x:Name="buttonSaveInvoice" Content="Save Invoice" Canvas.Left="279" Canvas.Top="67" HorizontalAlignment="Left" VerticalAlignment="Top" Click="SaveLoadedInvoice"/>
+        <Button x:Name="ButtonNewInvoice" Content="New Invoice" Canvas.Left="373" Canvas.Top="67" HorizontalAlignment="Left" VerticalAlignment="Top" Click="LoadNewInvoice"/>
+        <Label x:Name="LabelItemSelection" Content="Insert New Item" Canvas.Left="81" Canvas.Top="486" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <Button x:Name="buttonEditInvoice" Content="Edit Invoice" Canvas.Left="150" Canvas.Top="101" IsEnabled="False" Click="EnterEditMode"/>
+        <ComboBox x:Name="cbLoadedItemList" Canvas.Left="222" Canvas.Top="562" Width="184" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <TextBox x:Name="tbItemCost" Canvas.Left="380" TextWrapping="Wrap" Canvas.Top="483" Width="64" HorizontalAlignment="Center" VerticalAlignment="Top" IsReadOnly="True"/>
+        <Label x:Name="LabelItemCost" Content="Item Cost: " Canvas.Left="315" Canvas.Top="488" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Button x:Name="bDeleteItem" Content="Delete Item" Canvas.Left="422" Canvas.Top="555" RenderTransformOrigin="1.006,2.37" Click="DeleteItemFromLoadedInvoiceList" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Label x:Name="LabelItemRemovalSelection" Content="Remove Existing Item" Canvas.Left="81" Canvas.Top="560" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <Label x:Name="labelDateError" Content="Invalid date. Please try again." Canvas.Left="322" Canvas.Top="240" Width="168" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="Red" Background="{x:Null}" Visibility="Collapsed"/>
+    </Canvas>
+
+</Window>
